@@ -43,7 +43,7 @@ function App() {
             useOneTap />
         }
 
-        <button onClick={() => dispatch(increment(5))}>+</button>
+        <button onClick={() => dispatch(increment(2))}>+</button>
         <button onClick={() => dispatch(decrement())}>-</button>
         <h1>Counter: {counter}</h1>
       </header>
