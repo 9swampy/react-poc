@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { GoogleLogin } from '@react-oauth/google';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, signIn, signOut } from './actions';
+import { increment, decrement, signIn, signOut, setWeatherForecast } from './actions';
 
 
 
@@ -19,6 +19,30 @@ function App() {
   const counter = useSelector(state => state.counter);
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+
+  const fetchAuthWeatherForecast = async () => {
+    try {
+       const response = await fetch(
+          'https://localhost:7165/AuthWeatherForecast'
+       );
+       const data = await response.json();
+       dispatch(setWeatherForecast(data));
+    } catch (error) {
+       console.log(error);
+    }
+ };
+
+  const fetchWeatherForecast = async () => {
+  try {
+      const response = await fetch(
+          'https://localhost:7165/WeatherForecast'
+      );
+      const data = await response.json();
+      dispatch(setWeatherForecast(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="App">
@@ -45,6 +69,8 @@ function App() {
 
         <button onClick={() => dispatch(increment(2))}>+</button>
         <button onClick={() => dispatch(decrement())}>-</button>
+        <button onClick={fetchWeatherForecast}>Fetch WeatherForecast</button>
+        <button onClick={fetchAuthWeatherForecast}>Fetch Auth WeatherForecast</button>
         <h1>Counter: {counter}</h1>
       </header>
     </div>

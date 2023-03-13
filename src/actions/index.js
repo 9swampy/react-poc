@@ -23,3 +23,10 @@ export const signOut = () => {
         type: 'SIGN-OUT'
     }
 }
+
+export const setWeatherForecast = (payload) => {
+    return {
+        type: 'SET-WEATHERFORECAST',
+        payload: payload
+    }
+}
