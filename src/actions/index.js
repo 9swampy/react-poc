@@ -30,3 +30,10 @@ export const setWeatherForecast = (payload) => {
         payload: payload
     }
 }
+
+export const idToken = (payload) => {
+    return {
+        type: 'ID-TOKEN',
+        payload: payload
+    }
+}
